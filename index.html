@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd6e0, #ffc2d1, #caffbf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Floating cute decorations */
+.decorations span {
+    position: absolute;
+    font-size: 24px;
+    animation: float 6s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.decorations span:nth-child(1) { top: 10%; left: 15%; }
+.decorations span:nth-child(2) { top: 20%; right: 20%; }
+.decorations span:nth-child(3) { bottom: 15%; left: 25%; }
+.decorations span:nth-child(4) { bottom: 20%; right: 10%; }
+.decorations span:nth-child(5) { top: 50%; left: 5%; }
+
+.container {
+    text-align: center;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    padding: 60px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #e63946;
+    margin-bottom: 40px;
+}
+
+.buttons {
+    position: relative;
+    height: 120px;
+}
+
+/* YES BUTTON */
+#yesBtn {
+    padding: 15px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff4d6d, #ff758f);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(255,77,109,0.4);
+    transition: all 0.3s ease;
+}
+
+#yesBtn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 12px 25px rgba(255,77,109,0.6);
+}
+
+/* NO BUTTON */
+#noBtn {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: #aaa;
+    color: white;
+    position: absolute;
+    left: 60%;
+    top: 0;
+    transition: top 0.2s, left 0.2s;
+}
+
+/* Success screen */
+.success {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #ff8fab, #ff4d6d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    display: none;
+}
+
+.success span {
+    font-size: 50px;
+    margin-top: 20px;
+    animation: float 2s infinite ease-in-out;
+}
+</style>
+</head>
+
+<body>
+
+<div class="decorations">
+    <span>💖</span>
+    <span>🏀</span>
+    <span>✨</span>
+    <span>💘</span>
+    <span>🌟</span>
+</div>
+
+<div class="container">
+    <h1>will u be my valentine xinju?</h1>
+    <div class="buttons">
+        <button id="yesBtn">YES 💖</button>
+        <button id="noBtn">NO 😢</button>
+    </div>
+</div>
+
+<div class="success" id="successScreen">
+    MUAHAHA 💖✨  
+    <div>Happy Valentine's Day Xinju, i love u so much, me and shaq miss u <3</div>
+    <span>💘</span>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const successScreen = document.getElementById("successScreen");
+
+// Make NO button move randomly
+function moveButton() {
+    const container = document.querySelector(".buttons");
+    const maxX = container.offsetWidth - noBtn.offsetWidth;
+    const maxY = container.offsetHeight - noBtn.offsetHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("click", moveButton);
+
+// YES button click
+yesBtn.addEventListener("click", () => {
+    successScreen.style.display = "flex";
+});
+</script>
+
+</body>
+</html>
